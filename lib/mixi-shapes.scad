@@ -209,8 +209,8 @@ module torus(d = 0, r = 0, dr = 0, rr = 0, angle = 360) {
 
 // ---=== threads ===---
 
-module thread(m = 0, l, pitch = -1, d = 0, internal = true, leadin = 0) {
-    d = d > 0 ? d : (internal ? m * .05 + .1 : m);
+module thread(m = 0, l, pitch = -1, d = 0, d_adjust = 0, internal = true, leadin = 0) {
+    d = (d > 0 ? d : (internal ? m * 1.05 + .1 : m)) + d_adjust;
     pitch = pitch > 0 ? pitch : thread_pitch[m];
     echo("Thread: M", m, " pitch=", pitch, " d=", d, " l=", l, " internal=", internal, " leadin=", leadin);
     if ($preview)
@@ -261,3 +261,4 @@ module nut(size = 0, m = 0, h = 10, sides = 6, tol = .4, center = false) {
 
 
 include <antiwarp.scad>
+include <operators.scad>
